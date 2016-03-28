@@ -121,6 +121,7 @@ public class MainActivity extends Activity {
 //                startActivity(i);
 //            }
 //        });
+        new Database(this).copyDatabase();
     }
 
 
