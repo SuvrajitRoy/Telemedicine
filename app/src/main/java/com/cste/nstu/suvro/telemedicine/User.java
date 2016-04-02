@@ -2,8 +2,6 @@ package com.cste.nstu.suvro.telemedicine;
 
 
 public class User {
-
-        private int id;
         private String name;
         private String email;
         private String gender;
@@ -11,7 +9,65 @@ public class User {
         private String skypeName;
         private String mobile;
 
-        public User(int id, String name, String email, String gender,
+    public User( String name, String email, String gender, int age, String skypeName, String mobile) {
+        this.name = name;
+        this.email = email;
+        this.gender = gender;
+        this.age = age;
+        this.skypeName = skypeName;
+        this.mobile = mobile;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSkypeName(String skypeName) {
+        this.skypeName = skypeName;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getSkypeName() {
+        return skypeName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+    /*public User(int id, String name, String email, String gender,
                        int age, String skypeName,String mobile) {
             this.id = id;
             this.name = name;
@@ -78,9 +134,9 @@ public class User {
         }
         public void setMobile(String mobile) {
             this.mobile = mobile;
-        }
+        }*/
 
-        public String toString() {
+/*        public String toString() {
 
 
             return " user_id=" + id + "\n user_name=" + name + "\n user_email=" + email
@@ -91,7 +147,7 @@ public class User {
 
         public int getString() {
             return 0;
-        }
+        }*/
     }
 
 
