@@ -1,6 +1,7 @@
 package com.cste.nstu.suvro.telemedicine;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -21,6 +22,12 @@ public class Database extends SQLiteOpenHelper {
     public Database(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.mContext = context;
+    }
+
+    public Cursor query(String sqlStatement){
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sqlStatement,null);
+        return cursor;
     }
 
     public void copyDatabase() {
