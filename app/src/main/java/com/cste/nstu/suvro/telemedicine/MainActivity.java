@@ -117,14 +117,6 @@ public class MainActivity extends Activity {
         SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(SQL_Statement,null);
         */
-        Cursor cursor = database.query("select id,name from doctor");
-        cursor.moveToFirst();
-        ArrayList<Doctor> doctors = new ArrayList<>();
-        while (cursor.moveToNext()){
-            String id = cursor.getString(0);
-            String name = cursor.getString(1);
-            doctors.add(new Doctor(id,name));
-        }
     }
 
 
