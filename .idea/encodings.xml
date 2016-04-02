@@ -18,9 +18,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/footer_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_layout.xml" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/full_image.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/generic_layout.xml" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/grid_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/medicine_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/search_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/user_layout.xml" charset="windows-1252" />
