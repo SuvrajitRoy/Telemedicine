@@ -34,7 +34,8 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         register.setOnClickListener(this);
 
-        database = Database.getInstance(getApplicationContext());
+        database = new Database(this);
+
     }
 
 

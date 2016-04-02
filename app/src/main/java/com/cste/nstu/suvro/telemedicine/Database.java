@@ -81,7 +81,7 @@ public class Database extends SQLiteOpenHelper {
 
 
 
-        long inserted=db.insertOrThrow(DATABASE_TABLE,null, values);
+        long inserted=db.insertOrThrow("users",null, values);
         db.close();
         return inserted;
     }
