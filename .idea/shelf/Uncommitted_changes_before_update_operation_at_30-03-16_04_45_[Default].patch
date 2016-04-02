@@ -1,0 +1,57 @@
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(revision ab7d560d325e143e2d827de02a105080b68b252c)
++++ .idea/encodings.xml	(revision )
+@@ -18,7 +18,6 @@
+     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/doctor_layout.xml" charset="windows-1252" />
+     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/footer_layout.xml" charset="windows-1252" />
+     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_layout.xml" charset="windows-1252" />
+-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/full_image.xml" charset="windows-1252" />
+     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/generic_layout.xml" charset="windows-1252" />
+     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/grid_layout.xml" charset="windows-1252" />
+     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/medicine_layout.xml" charset="windows-1252" />
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision ab7d560d325e143e2d827de02a105080b68b252c)
++++ .idea/vcs.xml	(revision )
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="" vcs="" />
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision ab7d560d325e143e2d827de02a105080b68b252c)
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -3,4 +3,17 @@
+     <color name="colorPrimary">#3F51B5</color>
+     <color name="colorPrimaryDark">#303F9F</color>
+     <color name="colorAccent">#FF4081</color>
++    <color name="bg_login">#26ae90</color>
++    <color name="bg_register">#2e3237</color>
++    <color name="bg_main">#428bca</color>
++    <color name="white">#ffffff</color>
++    <color name="input_login">#222222</color>
++    <color name="input_login_hint">#999999</color>
++    <color name="input_register">#174e96</color>
++    <color name="input_register_bg">#3b4148</color>
++    <color name="input_register_hint">#5e6266</color>
++    <color name="btn_login">#26ae90</color>
++    <color name="btn_login_bg">#eceef1</color>
++    <color name="lbl_name">#333333</color>
++    <color name="btn_logut_bg">#ff6861</color>
+ </resources>

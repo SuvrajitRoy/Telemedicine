@@ -1,5 +1,6 @@
 package com.cste.nstu.suvro.telemedicine;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,11 +11,17 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-/**
- * Created by Roaim on 29-Mar-16.
- */
 
 public class Database extends SQLiteOpenHelper {
+
+    public static final String KEY_ID="user_id";
+    public static final String KEY_NAME="user_name";
+    public static final String KEY_EMAIL="user_email";
+    public static final String KEY_GENDER="gendr";
+    public static final String KEY_AGE="age";
+    public static final String KEY_SKYPE="skypeName";
+    public static final String KEY_PHONE="user_phoneNo";
+
     private static final String DB_NAME = "telemedicine";
     private static final int DB_VERSION = 1;
 
@@ -52,6 +59,24 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
+
+    public long insertUser(User user)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(KEY_NAME, user.getName());
+        values.put(KEY_EMAIL,user.getEmail());
+        values.put(KEY_GENDER, user.getEmail());
+        values.put(KEY_AGE, user.getAge());
+        values.put(KEY_SKYPE, user.getSkypeName());
+        values.put(KEY_PHONE,user.getMobile());
+
+
+
+        long inserted=db.insertOrThrow(DATABASE_TABLE,null, values);
+        db.close();
+        return inserted;
     }
 }
 
