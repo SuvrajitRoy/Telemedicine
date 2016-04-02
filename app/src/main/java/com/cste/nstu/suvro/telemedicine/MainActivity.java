@@ -2,6 +2,8 @@ package com.cste.nstu.suvro.telemedicine;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -121,6 +123,17 @@ public class MainActivity extends Activity {
 //                startActivity(i);
 //            }
 //        });
+        Database database = new Database(this);
+        database.copyDatabase();
+
+        /*
+        *
+        *Creating Sqlite object and cursor example:
+        *
+        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery(SQL_Statement,null);
+        */
+
     }
 
 

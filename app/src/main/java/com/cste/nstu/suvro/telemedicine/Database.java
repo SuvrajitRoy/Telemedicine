@@ -9,7 +9,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * Created by Roaim on 29-Mar-16.
+ */
+>>>>>>> remotes/origin/master
 public class Database extends SQLiteOpenHelper {
     private static final String DB_NAME = "telemedicine";
     private static final int DB_VERSION = 1;
@@ -49,4 +55,8 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> remotes/origin/master
