@@ -57,6 +57,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
 //            Toast.makeText(getApplicationContext(), user.getString(), Toast.LENGTH_LONG).show();
             long inserted = database.insertUser(user);
             if (inserted >= 0) {
+                finish();
                 Toast.makeText(getApplicationContext(), "Login SuccessFull", Toast.LENGTH_LONG).show();
 
             }
