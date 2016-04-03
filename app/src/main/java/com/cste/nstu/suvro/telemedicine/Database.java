@@ -15,10 +15,10 @@ import java.io.InputStream;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String KEY_ID="user_id";
+
     public static final String KEY_NAME="user_name";
     public static final String KEY_EMAIL="user_email";
-    public static final String KEY_GENDER="gendr";
+    public static final String KEY_GENDER="gender";
     public static final String KEY_AGE="age";
     public static final String KEY_SKYPE="skypeName";
     public static final String KEY_PHONE="user_phoneNo";

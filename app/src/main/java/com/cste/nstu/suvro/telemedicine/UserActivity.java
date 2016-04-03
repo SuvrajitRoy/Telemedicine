@@ -51,7 +51,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         if (uName.equals("") || uEmail.equals("") || uGender.equals("") || uAge.equals("") || uSkype.equals("") || uMobile.equals("")) {
             Toast.makeText(getApplicationContext(), "You Cannot leave any field Blank Except Mobile Number", Toast.LENGTH_LONG).show();
-            return;
+           // return ;
         } else {
             User user = new User(uName, uEmail, uGender, Integer.parseInt(uAge), uSkype, uMobile);
 //            Toast.makeText(getApplicationContext(), user.getString(), Toast.LENGTH_LONG).show();
