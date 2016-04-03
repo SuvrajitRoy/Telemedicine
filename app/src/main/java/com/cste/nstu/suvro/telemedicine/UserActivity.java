@@ -34,7 +34,8 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         register.setOnClickListener(this);
 
-        database = Database.getInstance(getApplicationContext());
+        database = new Database(this);
+
     }
 
 
@@ -44,7 +45,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
         String uName = name.getText().toString();
         String uEmail = email.getText().toString();
         String uGender = gender.getText().toString();
-        Integer uAge = Integer.valueOf(age.getText().toString());
+        String uAge = age.getText().toString();
         String uSkype = skype.getText().toString();
         String uMobile = mob.getText().toString();
 
@@ -52,8 +53,8 @@ public class UserActivity extends Activity implements View.OnClickListener {
             Toast.makeText(getApplicationContext(), "You Cannot leave any field Blank Except Mobile Number", Toast.LENGTH_LONG).show();
             return;
         } else {
-            User user = new User(uName, uEmail, uGender, uAge, uSkype, uMobile);
-            Toast.makeText(getApplicationContext(), user.getString(), Toast.LENGTH_LONG).show();
+            User user = new User(uName, uEmail, uGender, Integer.parseInt(uAge), uSkype, uMobile);
+//            Toast.makeText(getApplicationContext(), user.getString(), Toast.LENGTH_LONG).show();
             long inserted = database.insertUser(user);
             if (inserted >= 0) {
                 Toast.makeText(getApplicationContext(), "Login SuccessFull", Toast.LENGTH_LONG).show();
