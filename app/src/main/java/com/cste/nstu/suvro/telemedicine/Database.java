@@ -10,7 +10,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Database extends SQLiteOpenHelper {
@@ -84,6 +85,30 @@ public class Database extends SQLiteOpenHelper {
         long inserted=db.insertOrThrow("users",null, values);
         db.close();
         return inserted;
+    }
+
+    public List<String> getAllLabels(){
+        List<String> labels = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT  name FROM " + "medicines";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+       /* // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+*/
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return labels;
     }
 }
 
