@@ -14,8 +14,7 @@ public class AdapterClass extends ArrayAdapter<Medicine>{
 
 	Activity con;
 	ArrayList<Medicine> medicinelist;
-	public AdapterClass(Context context,
-						ArrayList<Medicine> objects) {
+	public AdapterClass(Context context,ArrayList<Medicine> objects) {
 		super(context,R.layout.list_search, objects);
 		// TODO Auto-generated constructor stub
 		this.con=(Activity)context;
@@ -29,8 +28,9 @@ public class AdapterClass extends ArrayAdapter<Medicine>{
 		{
 			LayoutInflater inflator=con.getLayoutInflater();
 			v=inflator.inflate(R.layout.list_search, null);
-			
-			TextView tvName=(TextView) v.findViewById(R.id.tvGeneric);
+
+			TextView tvMedName= (TextView) v.findViewById(R.id.tvMedicine);
+			TextView tvGenName=(TextView) v.findViewById(R.id.tvGeneric);
 			TextView tvInd=(TextView) v.findViewById(R.id.tvIndication);
 			TextView tvDos=(TextView) v.findViewById(R.id.tvDosage);
 			TextView tvAct=(TextView) v.findViewById(R.id.tvAction);
@@ -40,7 +40,9 @@ public class AdapterClass extends ArrayAdapter<Medicine>{
 			TextView tvPrice=(TextView) v.findViewById(R.id.tvSizePrice);
 			
 			Medicine medicine= medicinelist.get(position);
-			tvName.setText(medicine.getGenName());
+
+			tvMedName.setText(medicine.getMedName());
+			tvGenName.setText(medicine.getGenName());
 			tvInd.setText(medicine.getInd());
 			tvDos.setText(medicine.getDos());
 			tvAct.setText(medicine.getAction());
