@@ -45,8 +45,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="19dp"
         android:background="@drawable/button"
-        android:text="Search"
-        android:onClick="Search"/>
+        android:text="Search"/>
 
 
 </RelativeLayout>

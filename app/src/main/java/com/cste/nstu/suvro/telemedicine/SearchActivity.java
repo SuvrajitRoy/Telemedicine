@@ -36,7 +36,7 @@ public class SearchActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         String keyword=search.getText().toString();
-        ArrayList<Medicine> al=database.cursor.(keyword);
+        ArrayList<Medicine> al=database.searchMedicine(keyword);
         if(al!=null && al.size()>0)
         {
             adapterclass=new AdapterClass(this,al);
