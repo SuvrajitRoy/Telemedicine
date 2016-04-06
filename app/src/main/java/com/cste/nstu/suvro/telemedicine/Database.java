@@ -5,19 +5,29 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class Database extends SQLiteOpenHelper {
 
+    private static String DB_PATH ="/data/data/"+BuildConfig.APPLICATION_ID+"/databases/";
+    private static final String DB_NAME = "telemedicine";
+    private static final int DB_VERSION = 1;
+    public SQLiteDatabase myDataBase;
+     static Context mycontext;
 
+// User Table
     public static final String KEY_NAME="user_name";
     public static final String KEY_EMAIL="user_email";
     public static final String KEY_GENDER="gender";
@@ -26,6 +36,20 @@ public class Database extends SQLiteOpenHelper {
     public static final String KEY_PHONE="user_phoneNo";
 
 
+    // Doctor Table
+    public static final String KEY_DOCTOR_ID="doctor_id";
+    public static final String KEY_DOCTOR="doctor_name";
+    public static final String KEY_DESIGNATION="designation";
+    public static final String KEY_QUALIFICATION="qualification";
+    public static final String KEY_SPECIALIST="specialist";
+    public static final String KEY_LOCATION="location";
+    public static final String KEY_NUMBER="doctor_phoneNo";
+
+    private static final String[] DOCTORS = { KEY_DOCTOR_ID, KEY_DOCTOR, KEY_DESIGNATION,KEY_QUALIFICATION,KEY_SPECIALIST,KEY_LOCATION,KEY_NUMBER };
+
+
+
+    // Medicine Table
     public static final String KEY_MEDICINE="med_name";
     public static final String KEY_GENERIC="gen_name";
     public static final String KEY_INDICATION="indication";
@@ -35,17 +59,55 @@ public class Database extends SQLiteOpenHelper {
     public static final String KEY_SIDE_EFFECT="side_effect";
     public static final String KEY_COMPANY="com_name";
     public static final String KEY_PRICE="price";
+    private int doctor_id;
 
-
-    private static final String DB_NAME = "telemedicine";
-    private static final int DB_VERSION = 1;
-
-    private Context mContext;
 
     public Database(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        this.mContext = context;
+        this.mycontext = context;
+
+        boolean dbexist = checkdatabase();
+        if (dbexist) {
+            System.out.println("Database exists");
+            opendatabase();
+        } else {
+            System.out.println("Database doesn't exist");
+            try {
+                createdatabase();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+
+    public void createdatabase() throws IOException {
+        boolean dbexist = checkdatabase();
+        if(dbexist) {
+            System.out.println(" Database exists.");
+        } else {
+            this.getReadableDatabase();
+            try {
+                copydatabase();
+            } catch(IOException e) {
+                throw new Error("Error copying database");
+            }
+        }
+    }
+
+    private boolean checkdatabase() {
+
+        boolean checkdb = false;
+        try {
+            String myPath = DB_PATH + DB_NAME;
+            File dbfile = new File(myPath);
+            checkdb = dbfile.exists();
+        } catch(SQLiteException e) {
+            System.out.println("Database doesn't exist");
+        }
+        return checkdb;
+    }
+
 
     public Cursor query(String sqlStatement){
         SQLiteDatabase database = this.getReadableDatabase();
@@ -53,7 +115,7 @@ public class Database extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void copyDatabase() {
+/*    public void copyDatabase() {
         File dbPath = mContext.getDatabasePath(DB_NAME);
         if (!dbPath.exists()){
             if (dbPath.getParentFile().mkdir()){
@@ -72,6 +134,66 @@ public class Database extends SQLiteOpenHelper {
                 }
             } else System.out.println("Failed to create db folder.");
         }
+    }*/
+
+    private void copydatabase() throws IOException {
+        //Open your local db as the input stream
+        InputStream myinput = mycontext.getAssets().open(DB_NAME);
+
+        // Path to the just created empty db
+        String outfilename = getDatabasePath();
+
+        // if the path doesn't exist first, create it
+        File f = new File(mycontext.getApplicationInfo().dataDir + DB_PATH);
+        if (!f.exists())
+            f.mkdir();
+
+
+        //Open the empty db as the output stream
+        OutputStream myoutput = new FileOutputStream(outfilename);
+
+        // transfer byte to inputfile to outputfile
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myinput.read(buffer))>0) {
+            myoutput.write(buffer,0,length);
+        }
+
+        //Close the streams
+        myoutput.flush();
+        myoutput.close();
+        myinput.close();
+    }
+
+    private static String getDatabasePath() {
+        return mycontext.getApplicationInfo().dataDir + DB_PATH
+                + DB_NAME;
+    }
+
+    //delete database
+    public void db_delete()
+    {
+        File file = new File(DB_PATH + DB_NAME);
+        if(file.exists())
+        {
+            file.delete();
+            System.out.println("delete database file.");
+        }
+    }
+
+    public void opendatabase() throws SQLException {
+        //Open the database
+        String mypath = DB_PATH + DB_NAME;
+        myDataBase = SQLiteDatabase.openDatabase(mypath, null, SQLiteDatabase.OPEN_READWRITE);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+    }
+
+    public synchronized void closeDataBase()throws SQLException
+    {
+        if(myDataBase != null)
+            myDataBase.close();
+        super.close();
     }
 
     @Override
@@ -80,18 +202,32 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (newVersion > oldVersion)
+        {
+            Log.v("Database Upgrade", "Database version higher than old.");
+            db_delete();
+        }
     }
+
+  /*  public void createDoctor(Doctor doctor) {
+        // get reference of the BookDB database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long insert = db.insert("users", null,values);
+        db.close();
+    }*/
+
 
     public long insertUser(User user)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(KEY_NAME, user.getName());
-        values.put(KEY_EMAIL,user.getEmail());
+        values.put(KEY_EMAIL, user.getEmail());
         values.put(KEY_GENDER, user.getEmail());
         values.put(KEY_AGE, user.getAge());
         values.put(KEY_SKYPE, user.getSkypeName());
-        values.put(KEY_PHONE,user.getMobile());
+        values.put(KEY_PHONE, user.getMobile());
 
 
 
@@ -101,14 +237,104 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Medicine> searchMedicine(String keyword)
+
+    //Start DoctorList
+
+
+    // Getting single doctor
+    public Doctor getDoctorDetail() {
+        this.doctor_id = doctor_id;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM doctors", null);
+        if (cursor != null && cursor.moveToFirst()){
+            Doctor doc = new Doctor(cursor.getInt(0),cursor.getString(1), cursor.getString(2),cursor.getString(3), cursor.getString(4),cursor.getString(5), cursor.getString(6));
+            // return doctor
+            doc.setDoctor_id(Integer.parseInt(cursor.getString(0)));
+            doc.setDoctor_name(cursor.getString(1));
+            doc.setDesignation(cursor.getString(2));
+            doc.setQualification(cursor.getString(3));
+            doc.setSpecialist(cursor.getString(4));
+            doc.setLocation(cursor.getString(5));
+            doc.setNumber(cursor.getString(6));
+
+            cursor.close();
+            db.close();
+
+            return doc;
+
+        }
+        return null;
+    }
+
+   /* public Doctor readDoctor(int id) {
+        // get reference of the doctorDB database
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // get doctor query
+        Cursor cursor = db.query("doctors", // a. table
+                DOCTORS, " id = ?", new String[]{String.valueOf(id)}, null, null, null, null);
+
+        // if results !=null, parse the first one
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Doctor doctor = new Doctor();
+        doctor.setId(Integer.parseInt(cursor.getString(0)));
+        doctor.setName(cursor.getString(1));
+        doctor.setDesignation(cursor.getString(2));
+        doctor.setQualification(cursor.getString(3));
+        doctor.setSpecialist(cursor.getString(4));
+        doctor.setLocation(cursor.getString(5));
+        doctor.setNumber(cursor.getString(6));
+
+
+        return doctor;
+    }
+*/
+    public List<Doctor> getAllDoctors() {
+        List<Doctor> doctors = new LinkedList<Doctor>();
+
+        // select doctor query
+        String query = "SELECT  * FROM " + "doctors";
+
+        // get reference of the DoctorDB database
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        Doctor doctor = null;
+        if (cursor.moveToFirst()) {
+            do {
+                doctor = new Doctor();
+                doctor.setDoctor_id(Integer.parseInt(cursor.getString(0)));
+                doctor.setDoctor_name(cursor.getString(1));
+                doctor.setDesignation(cursor.getString(2));
+                doctor.setQualification(cursor.getString(3));
+                doctor.setSpecialist(cursor.getString(4));
+                doctor.setLocation(cursor.getString(5));
+                doctor.setNumber(cursor.getString(6));
+
+
+//                // Add book to books
+              doctors.add(doctor);
+            } while (cursor.moveToNext());
+        }
+
+        return doctors;
+    }
+
+    //End DoctorList
+
+   //Start Search medicine
+  /*   public ArrayList<Medicine> searchMedicine(String keyword)
     {
         ArrayList<Medicine> md=new ArrayList<Medicine>();
-        SQLiteDatabase db=this.getReadableDatabase();
-        //Cursor cr=db.query(DATABASE_TABLE, null,KEY_GROUP +" LIKE '%"+ KeyWord +"%'",null,null,null,null);
-        Cursor cr=db.rawQuery(
-                "select * from medicines where name LIKE '%"+ keyword + "%';"
-                , null);
+        SQLiteDatabase database=this.getReadableDatabase();
+      //  Cursor cr=database.query("medicines", null,KEY_MEDICINE +" LIKE '%"+ Keyword +"%'",null,null,null,null);
+        Cursor cr=database.rawQuery(
+                "SELECT med_name FROM medicines WHERE med_name LIKE '%"+ keyword + "%';", null);
 
         if(cr!=null && cr.getCount()>0)
         {
@@ -133,14 +359,14 @@ public class Database extends SQLiteOpenHelper {
             }
         }
         cr.close();
-        db.close();
+        database.close();
         return md;
     }
     public ArrayList<Medicine> getAllInformation()
     {
         ArrayList<Medicine> allinformation=new ArrayList<Medicine>();
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor c=db.query("medicines", null, null, null, null, null, null);
+        SQLiteDatabase database=this.getReadableDatabase();
+        Cursor c=database.query("medicines", null, null, null, null, null, null);
         if(c!=null && c.getCount()>0)
         {
             c.moveToFirst();
@@ -162,11 +388,11 @@ public class Database extends SQLiteOpenHelper {
             }
         }
         c.close();
-        db.close();
+        database.close();
         return allinformation;
     }
 
-    public String getKeyMedicine(long l) throws SQLException {
+    public String getMedName(long l) throws SQLException {
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -181,7 +407,7 @@ public class Database extends SQLiteOpenHelper {
         OurDatabase.close();
         return null;
     }
-    public String getKeyGeneric(long l) throws SQLException{
+    public String getGeneric(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -189,14 +415,14 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(2);
-            return group;
+            String generic=c.getString(2);
+            return generic;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
-    public String getKeyIndication(long l) throws SQLException{
+    public String getIndication(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -204,14 +430,14 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(3);
-            return group;
+            String ind=c.getString(3);
+            return ind;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
-    public String getKeyDosage(long l) throws SQLException{
+    public String getDosage(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -219,14 +445,14 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(4);
-            return group;
+            String dos=c.getString(4);
+            return dos;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
-    public String getKeyContraindication(long l) throws SQLException{
+    public String getContraindication(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -234,15 +460,15 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(5);
-            return group;
+            String con=c.getString(5);
+            return con;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
 
-    public String getKeySideEffect(long l) throws SQLException{
+    public String getSideEffect(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -250,14 +476,14 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(5);
-            return group;
+            String side=c.getString(5);
+            return side;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
-    public String getKeyAction(long l) throws SQLException{
+    public String getAction(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -265,15 +491,15 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(5);
-            return group;
+            String act=c.getString(5);
+            return act;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
 
-    public String getKeyPrice(long l) throws SQLException{
+    public String getPrice(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -281,15 +507,15 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(5);
-            return group;
+            String price=c.getString(5);
+            return price;
         }
         c.close();
         OurDatabase.close();
         return null;
     }
 
-    public String getKeyCompany(long l) throws SQLException{
+    public String getCompany(long l) throws SQLException{
         // TODO Auto-generated method stub
         String[] columns=new String[]{ KEY_MEDICINE,KEY_GENERIC,KEY_INDICATION,KEY_DOSAGE,KEY_CONTRAINDICATION,KEY_SIDE_EFFECT,KEY_ACTION,KEY_PRICE,KEY_COMPANY};
         SQLiteDatabase OurDatabase=this.getReadableDatabase();
@@ -297,36 +523,14 @@ public class Database extends SQLiteOpenHelper {
         if(c!=null)
         {
             c.moveToFirst();
-            String group=c.getString(5);
-            return group;
+            String company=c.getString(5);
+            return company;
         }
         c.close();
         OurDatabase.close();
         return null;
-    }
-   /* public List<String> getAllLabels(){
-        List<String> labels = new ArrayList<String>();
-
-        // Select All Query
-        String selectQuery = "SELECT  name FROM " + "medicines";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-       *//* // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                labels.add(cursor.getString(1));
-            } while (cursor.moveToNext());
-        }
-*//*
-        // closing connection
-        cursor.close();
-        db.close();
-
-        // returning lables
-        return labels;
     }*/
+    //close search
 }
 
 

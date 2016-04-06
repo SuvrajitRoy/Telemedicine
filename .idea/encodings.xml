@@ -9,6 +9,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/cste/nstu/suvro/telemedicine/MedicineActivity.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/cste/nstu/suvro/telemedicine/SearchActivity.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/com/cste/nstu/suvro/telemedicine/UserActivity.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/button.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/doctor.png" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/generic.png" charset="windows-1252" />
@@ -21,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/footer_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/generic_layout.xml" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/list_doctor.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/list_search.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/medicine_layout.xml" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/search_layout.xml" charset="windows-1252" />

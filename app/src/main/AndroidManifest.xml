@@ -3,6 +3,12 @@
     package="com.cste.nstu.suvro.telemedicine">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+
+    <!--<uses-permission android:name="android.permission.CALL_PHONE"/>-->
+    <!--<uses-feature android:name="android.hardware.telephony"-->
+        android:required="true"/>
+
 
 
     <application
@@ -29,6 +35,9 @@
         <activity
             android:name=".DoctorActivity"
             android:label="@string/title_activity_doctor" >
+        </activity>
+        <activity android:name=".ExtendedDoctorActivity">
+
         </activity>
         <activity
             android:name=".SearchActivity"

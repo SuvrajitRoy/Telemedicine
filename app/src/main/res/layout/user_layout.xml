@@ -6,13 +6,19 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.cste.nstu06.suvro.telemedicine.UserActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center_vertical">
+
       <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp" >
+            android:paddingRight="20dp"
+          android:weightSum="1">
 
             <EditText
                 android:id="@+id/etname"
@@ -23,9 +29,7 @@
                 android:hint="Name"
                 android:padding="10dp"
                 android:singleLine="true"
-                android:inputType="textCapWords"
-               />/ android:textColor="@color/input_register"
-                android:textColorHint="@color/input_register_hint" />
+                android:inputType="textCapSentences" />
 
             <EditText
                 android:id="@+id/etemail"
@@ -38,18 +42,39 @@
                 android:padding="10dp"
                 android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/etgender"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:hint="Gender"
-                android:inputType="textCapWords"
-                android:padding="10dp"
-                android:singleLine="true" />
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="  Are you?"
+              android:id="@+id/tvRadio"
+              android:textSize="20dp" />
 
-            <EditText
+          <RadioGroup
+              android:layout_width="fill_parent"
+              android:layout_height="50dp"
+              android:layout_marginTop="58dp"
+              android:weightSum="1"
+              android:id="@+id/rdGroup" >
+          <RadioButton
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Male"
+              android:id="@+id/radioButtonMale"
+              android:checked="false"
+              android:textSize="25dp"
+              android:layout_weight="0.5" />
+
+          <RadioButton
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Female"
+              android:id="@+id/radioButtonFemale"
+              android:checked="false"
+              android:textSize="25dp"
+              android:layout_weight="0.5" />
+          </RadioGroup>
+
+          <EditText
                 android:id="@+id/etage"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +85,7 @@
                 android:padding="10dp"
                 android:singleLine="true" />
 
-            <EditText
+          <EditText
                 android:id="@+id/etSkypeName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -71,7 +96,7 @@
                 android:padding="10dp"
                 android:singleLine="true" />
 
-            <EditText
+          <EditText
                 android:id="@+id/etphoneNo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +106,9 @@
                 android:inputType="phone"
                 android:padding="10dp"
                 android:singleLine="true" />
-            <!-- Login Button -->
+
+
+          <!-- Login Button -->
 
             <Button
                 android:id="@+id/btnRegister"
@@ -106,6 +133,6 @@
                 <!--android:textColor="@color/white"-->
                 <!--android:textSize="15dp" />-->
         </LinearLayout>
-
+    </ScrollView>
 
 </RelativeLayout>

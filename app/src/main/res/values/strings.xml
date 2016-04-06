@@ -10,4 +10,6 @@
     <string name="title_activity_medicine">Medicine</string>
     <string name="title_activity_generic">Generic</string>
 
+    <string name="example_radiogroup">Example showing RadioGroup</string>
+
 </resources>

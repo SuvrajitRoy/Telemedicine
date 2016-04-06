@@ -16,6 +16,7 @@
         android:layout_marginTop="20dp"
         android:background="#ffffff"
         android:ems="10"
+        android:inputType="textCapCharacters"
         android:gravity="center_vertical"
         android:hint="Medicine"
         android:paddingLeft="10dp"

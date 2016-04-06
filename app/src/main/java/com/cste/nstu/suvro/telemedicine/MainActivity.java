@@ -107,8 +107,8 @@ public class MainActivity extends Activity {
 
 
 
-        Database database = new Database(this);
-        database.copyDatabase();
+//        Database database = new Database(this);
+//        database.copydatabase();
 
         /*
         *

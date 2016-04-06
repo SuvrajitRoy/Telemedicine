@@ -95,4 +95,13 @@ public class Medicine {
     public void setPrice(String price) {
         this.price = price;
     }
+
+
+    public String toString() {
+
+
+        return " medName=" + medName + "\n genName=" + genName + "\n ind=" + ind
+                + "\n dos=" + dos + "\n action=" + action + "\n contra=" + contra + "\n side="
+                + side + "\n company=" +company + "\n price=" + price  ;
+    }
 }

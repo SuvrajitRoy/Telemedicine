@@ -8,13 +8,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class UserActivity extends Activity implements View.OnClickListener {
 
-    EditText name, email, gender, age, skype, mob;
+    EditText name, email, age, skype, mob;
+    TextView tvRadio;
+    RadioGroup rg;
+    RadioButton rgbtn;
     Button register;
 
     Database database;
@@ -26,17 +33,38 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         name = (EditText) findViewById(R.id.etname);
         email = (EditText) findViewById(R.id.etemail);
-        gender = (EditText) findViewById(R.id.etgender);
+       // gender = (EditText) findViewById(R.id.etgender);
         age = (EditText) findViewById(R.id.etage);
         skype = (EditText) findViewById(R.id.etphoneNo);
         mob = (EditText) findViewById(R.id.etphoneNo);
+
+        tvRadio= (TextView) findViewById(R.id.tvRadio);
+
         register = (Button) findViewById(R.id.btnRegister);
 
         register.setOnClickListener(this);
 
         database = new Database(this);
 
-    }
+
+         rg = (RadioGroup) findViewById(R.id.rdGroup);
+        rgbtn = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
+
+        /*final String value = ((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                Toast.makeText(getBaseContext(), value, Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+
+
+
+
+}
 
 
     @Override
@@ -44,7 +72,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         String uName = name.getText().toString();
         String uEmail = email.getText().toString();
-        String uGender = gender.getText().toString();
+        String uGender = rgbtn.getText().toString();;
         String uAge = age.getText().toString();
         String uSkype = skype.getText().toString();
         String uMobile = mob.getText().toString();
@@ -65,25 +93,5 @@ public class UserActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

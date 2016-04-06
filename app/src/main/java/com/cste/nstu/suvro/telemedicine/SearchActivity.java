@@ -36,15 +36,15 @@ public class SearchActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        String keyword=etSearch.getText().toString();
+      /*  String keyword=etSearch.getText().toString();
         ArrayList<Medicine> al=database.searchMedicine(keyword);
         if(al!=null && al.size()>0)
         {
-            adapterclass=new AdapterClass(this,al);
+            adapterclass=new AdapterClass(getApplicationContext(),al);
             lvMedicinelist.setAdapter(adapterclass);
-        }
+        }*/
 
-    //   Toast.makeText(this,"Work",Toast.LENGTH_LONG).show();
+       Toast.makeText(this,"Work",Toast.LENGTH_LONG).show();
 
     }
 
