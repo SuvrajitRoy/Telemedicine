@@ -35,17 +35,17 @@ public class DoctorActivity extends ListActivity implements AdapterView.OnItemCl
         db.opendatabase();
         doctors = new Doctor();
 
-   //     doctors = db.getDoctorDetail();
-      //  ListView listView = (ListView) findViewById(R.id.list);
+   /*     doctors = db.getDoctorDetail();
+        ListView listView = (ListView) findViewById(R.id.list);
 
-     //   TextView textView= (TextView) findViewById(R.id.textView);
+        TextView textView= (TextView) findViewById(R.id.textView);
 
-    //   textView.setText("Name: " + doctors.getDoctor_name() + "\nMobile No: " + doctors.getNumber());
+       textView.setText("Name: " + doctors.getDoctor_name() + "\nMobile No: " + doctors.getNumber());
 
-      //  db.getAllDoctors();
-      //  AssetManager assetManager = getAssets();
+        db.getAllDoctors();
+        AssetManager assetManager = getAssets();*/
 
-        // fine all doctors
+        // find all doctors
         list = db.getAllDoctors();
         List<String> listTitle = new ArrayList<String>();
 

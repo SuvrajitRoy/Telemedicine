@@ -1,39 +1,53 @@
 package com.cste.nstu.suvro.telemedicine;
 
+import android.app.ListActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class GenericActivity extends ActionBarActivity {
+public class GenericActivity extends ListActivity implements AdapterView.OnItemClickListener {
+
+    Database db ;
+    Generic generics;
+    List<Generic> listGen;
+    ArrayAdapter<String> myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.generic_layout);
-    }
 
+        db=new Database(this);
+        db.opendatabase();
+        generics = new Generic();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_generic, menu);
-        return true;
-    }
+        // find all generic
+      //  listGen = db.getAllGenerics();
+        List<String> listTitle = new ArrayList<String>();
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        for (int i = 0; i < listGen.size(); i++) {
+            listTitle.add(i, listGen.get(i).getGen_name());
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
 
-        return super.onOptionsItemSelected(item);
+
+        myAdapter = new ArrayAdapter<String>(this, R.layout.row_layout, R.id.listText, listTitle);
+        getListView().setOnItemClickListener(this);
+        setListAdapter(myAdapter);
+    }
+
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }

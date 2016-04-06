@@ -60,6 +60,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String KEY_COMPANY="com_name";
     public static final String KEY_PRICE="price";
     private int doctor_id;
+    private int _id;
 
 
     public Database(Context context) {
@@ -238,7 +239,7 @@ public class Database extends SQLiteOpenHelper {
 
 
 
-    //Start DoctorList
+    //******Start DoctorList
 
 
     // Getting single doctor
@@ -267,31 +268,6 @@ public class Database extends SQLiteOpenHelper {
         return null;
     }
 
-   /* public Doctor readDoctor(int id) {
-        // get reference of the doctorDB database
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // get doctor query
-        Cursor cursor = db.query("doctors", // a. table
-                DOCTORS, " id = ?", new String[]{String.valueOf(id)}, null, null, null, null);
-
-        // if results !=null, parse the first one
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        Doctor doctor = new Doctor();
-        doctor.setId(Integer.parseInt(cursor.getString(0)));
-        doctor.setName(cursor.getString(1));
-        doctor.setDesignation(cursor.getString(2));
-        doctor.setQualification(cursor.getString(3));
-        doctor.setSpecialist(cursor.getString(4));
-        doctor.setLocation(cursor.getString(5));
-        doctor.setNumber(cursor.getString(6));
-
-
-        return doctor;
-    }
-*/
     public List<Doctor> getAllDoctors() {
         List<Doctor> doctors = new LinkedList<Doctor>();
 
@@ -317,7 +293,7 @@ public class Database extends SQLiteOpenHelper {
                 doctor.setNumber(cursor.getString(6));
 
 
-//                // Add book to books
+//                // Add doctor to doctors
               doctors.add(doctor);
             } while (cursor.moveToNext());
         }
@@ -325,7 +301,71 @@ public class Database extends SQLiteOpenHelper {
         return doctors;
     }
 
-    //End DoctorList
+    //End DoctorList*******
+
+    //******Start GenericList
+
+
+    // Getting single generic
+    public Doctor getGenericDetail() {
+        this._id = _id;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM generics", null);
+        if (cursor != null && cursor.moveToFirst()){
+            Doctor doc = new Doctor(cursor.getInt(0),cursor.getString(1), cursor.getString(2),cursor.getString(3), cursor.getString(4),cursor.getString(5), cursor.getString(6));
+            // return doctor
+            doc.setDoctor_id(Integer.parseInt(cursor.getString(0)));
+            doc.setDoctor_name(cursor.getString(1));
+            doc.setDesignation(cursor.getString(2));
+            doc.setQualification(cursor.getString(3));
+            doc.setSpecialist(cursor.getString(4));
+            doc.setLocation(cursor.getString(5));
+            doc.setNumber(cursor.getString(6));
+
+            cursor.close();
+            db.close();
+
+            return doc;
+
+        }
+        return null;
+    }
+
+    public List<Doctor> getAllGenerics() {
+        List<Doctor> doctors = new LinkedList<Doctor>();
+
+        // select doctor query
+        String query = "SELECT  * FROM " + "doctors";
+
+        // get reference of the DoctorDB database
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // parse all results
+        Doctor doctor = null;
+        if (cursor.moveToFirst()) {
+            do {
+                doctor = new Doctor();
+                doctor.setDoctor_id(Integer.parseInt(cursor.getString(0)));
+                doctor.setDoctor_name(cursor.getString(1));
+                doctor.setDesignation(cursor.getString(2));
+                doctor.setQualification(cursor.getString(3));
+                doctor.setSpecialist(cursor.getString(4));
+                doctor.setLocation(cursor.getString(5));
+                doctor.setNumber(cursor.getString(6));
+
+
+//                // Add book to books
+                doctors.add(doctor);
+            } while (cursor.moveToNext());
+        }
+
+        return doctors;
+    }
+
+    //End GenericList*******
 
    //Start Search medicine
   /*   public ArrayList<Medicine> searchMedicine(String keyword)
