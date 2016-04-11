@@ -1,21 +1,16 @@
 package com.cste.nstu.suvro.telemedicine;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
-
-import java.util.ArrayList;
-
 
 public class MainActivity extends Activity {
 
@@ -24,24 +19,23 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_layout);
 
-
         /**
          * Creating all buttons instances
          * */
         // Dashboard doctor button
-        Button btn_newsfeed = (Button) findViewById(R.id.btn_doc);
+        Button btn_doc = (Button) findViewById(R.id.btn_doc);
 
         // Dashboard user button
-        Button btn_friends = (Button) findViewById(R.id.btn_usr);
+        Button btn_usr = (Button) findViewById(R.id.btn_usr);
 
         // Dashboard Medicine button
-        Button btn_messages = (Button) findViewById(R.id.btn_med);
+        Button btn_med = (Button) findViewById(R.id.btn_med);
 
         // Dashboard Generic button
-        Button btn_places = (Button) findViewById(R.id.btn_gen);
+        Button btn_gen = (Button) findViewById(R.id.btn_gen);
 
         // Dashboard Search button
-        Button btn_events = (Button) findViewById(R.id.btn_ser);
+        Button btn_ser = (Button) findViewById(R.id.btn_ser);
 
 
 
@@ -50,7 +44,7 @@ public class MainActivity extends Activity {
          * */
 
         // Listening to Doctor button click
-        btn_newsfeed.setOnClickListener(new View.OnClickListener() {
+        btn_doc.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -61,7 +55,7 @@ public class MainActivity extends Activity {
         });
 
         // Listening Friends button click
-        btn_friends.setOnClickListener(new View.OnClickListener() {
+        btn_usr.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -72,7 +66,7 @@ public class MainActivity extends Activity {
         });
 
         // Listening Messages button click
-        btn_messages.setOnClickListener(new View.OnClickListener() {
+        btn_med.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -83,7 +77,7 @@ public class MainActivity extends Activity {
         });
 
         // Listening to Places button click
-        btn_places.setOnClickListener(new View.OnClickListener() {
+        btn_gen.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -94,7 +88,7 @@ public class MainActivity extends Activity {
         });
 
         // Listening to Events button click
-        btn_events.setOnClickListener(new View.OnClickListener() {
+        btn_ser.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -106,20 +100,7 @@ public class MainActivity extends Activity {
 
 
 
-
-//        Database database = new Database(this);
-//        database.copydatabase();
-
-        /*
-        *
-        *Creating Sqlite object and cursor example:
-        *
-        SQLiteDatabase sqLiteDatabase = database.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(SQL_Statement,null);
-        */
     }
-
-
 
 
     @Override

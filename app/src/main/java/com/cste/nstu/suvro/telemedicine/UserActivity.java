@@ -18,13 +18,12 @@ import android.widget.Toast;
 
 public class UserActivity extends Activity implements View.OnClickListener {
 
-    EditText name, email, age, skype, mob;
+    EditText name, email,gender, age, skype, mob;
     TextView tvRadio;
     RadioGroup rg;
     RadioButton rgbtn;
     Button register;
-
-    Database database;
+    private SqlLiteManger sqlLiteManger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +32,25 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         name = (EditText) findViewById(R.id.etname);
         email = (EditText) findViewById(R.id.etemail);
-       // gender = (EditText) findViewById(R.id.etgender);
+        gender = (EditText) findViewById(R.id.etgender);
         age = (EditText) findViewById(R.id.etage);
         skype = (EditText) findViewById(R.id.etphoneNo);
         mob = (EditText) findViewById(R.id.etphoneNo);
 
-        tvRadio= (TextView) findViewById(R.id.tvRadio);
+       // tvRadio= (TextView) findViewById(R.id.tvRadio);
 
         register = (Button) findViewById(R.id.btnRegister);
 
         register.setOnClickListener(this);
 
-        database = new Database(this);
+        sqlLiteManger = new SqlLiteManger(this);
+       // sqlLiteManger.getWritableDatabase();
 
+/*
 
          rg = (RadioGroup) findViewById(R.id.rdGroup);
         rgbtn = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
+*/
 
         /*final String value = ((RadioButton)findViewById(rg.getCheckedRadioButtonId() )).getText().toString();
 
@@ -72,7 +74,7 @@ public class UserActivity extends Activity implements View.OnClickListener {
 
         String uName = name.getText().toString();
         String uEmail = email.getText().toString();
-        String uGender = rgbtn.getText().toString();;
+        String uGender = gender.getText().toString();;
         String uAge = age.getText().toString();
         String uSkype = skype.getText().toString();
         String uMobile = mob.getText().toString();
@@ -81,9 +83,10 @@ public class UserActivity extends Activity implements View.OnClickListener {
             Toast.makeText(getApplicationContext(), "You Cannot leave any field Blank Except Mobile Number", Toast.LENGTH_LONG).show();
            // return ;
         } else {
-            User user = new User(uName, uEmail, uGender, Integer.parseInt(uAge), uSkype, uMobile);
+            User user = new User(uName, uEmail, uGender, uAge, uSkype, uMobile);
+         //   User user = new User(uName, uEmail, uGender, Integer.parseInt(uAge), uSkype, uMobile);
 //            Toast.makeText(getApplicationContext(), user.getString(), Toast.LENGTH_LONG).show();
-            long inserted = database.insertUser(user);
+            long inserted = sqlLiteManger.insertUser(user);
             if (inserted >= 0) {
                 finish();
                 Toast.makeText(getApplicationContext(), "Login SuccessFull", Toast.LENGTH_LONG).show();

@@ -20,10 +20,10 @@ import java.util.List;
 
 public class DoctorActivity extends ListActivity implements AdapterView.OnItemClickListener {
 
-    Database db ;
     Doctor doctors;
     List<Doctor> list;
     ArrayAdapter<String> myAdapter;
+    private SqlLiteManger sqlLiteManger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +31,13 @@ public class DoctorActivity extends ListActivity implements AdapterView.OnItemCl
         setContentView(R.layout.doctor_layout);
 
 
-        db=new Database(this);
-        db.opendatabase();
+        sqlLiteManger=new SqlLiteManger(this);
+        sqlLiteManger.open();
         doctors = new Doctor();
 
-   /*     doctors = db.getDoctorDetail();
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        TextView textView= (TextView) findViewById(R.id.textView);
-
-       textView.setText("Name: " + doctors.getDoctor_name() + "\nMobile No: " + doctors.getNumber());
-
-        db.getAllDoctors();
-        AssetManager assetManager = getAssets();*/
 
         // find all doctors
-        list = db.getAllDoctors();
+        list = sqlLiteManger.getAllDoctors();
         List<String> listTitle = new ArrayList<String>();
 
         for (int i = 0; i < list.size(); i++) {
@@ -61,24 +52,30 @@ public class DoctorActivity extends ListActivity implements AdapterView.OnItemCl
         //   finish();
       //  Toast.makeText(this, "Login SuccessFull", Toast.LENGTH_LONG).show();
 
+        sqlLiteManger.close();
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
 
-        // start BookActivity with extras the doctor id
+        // start ExtendedDoctorActivity with extras the doctor id
         Intent intent = new Intent(this, ExtendedDoctorActivity.class);
         intent.putExtra("doctor", list.get(position).getDoctor_id());
         startActivityForResult(intent, 1);
+
+//        Toast.makeText(getApplicationContext(),
+//                "Click ListItem Number " + position, Toast.LENGTH_LONG)
+//                .show();
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+      //  super.onActivityResult(requestCode, resultCode, data);
 
         // get all doctor again, because something changed
-        list = db.getAllDoctors();
+       /* list = sqlLiteManger.getAllDoctors();
 
         List<String> listTitle = new ArrayList<String>();
 
@@ -88,7 +85,7 @@ public class DoctorActivity extends ListActivity implements AdapterView.OnItemCl
 
         myAdapter = new ArrayAdapter<String>(this, R.layout.row_layout, R.id.listText, listTitle);
         getListView().setOnItemClickListener(this);
-        setListAdapter(myAdapter);
+        setListAdapter(myAdapter);*/
     }
 
 }

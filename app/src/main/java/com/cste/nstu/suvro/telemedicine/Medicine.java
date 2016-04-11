@@ -1,107 +1,44 @@
 package com.cste.nstu.suvro.telemedicine;
 
-
+/**
+ * Created by SUVRO on 11-04-16.
+ */
 public class Medicine {
-    private String medName;
-    private String genName;
-    private String ind;
-    private String dos;
-    private String action;
-    private String contra;
-    private String side;
-    private String company;
-    private String price;
 
+    public int med_id;
+    public String med_name ="";
+    public String com_name ="";
 
-    public Medicine(String medName, String genName, String ind, String dos, String action, String contra, String side, String company,String price) {
-        this.medName = medName;
-        this.genName = genName;
-        this.ind = ind;
-        this.dos = dos;
-        this.action = action;
-        this.contra = contra;
-        this.side = side;
-        this.company=company;
-        this.price = price;
+    public Medicine(int med_id, String med_name, String com_name) {
+        this.med_id = med_id;
+        this.med_name = med_name;
+        this.com_name = com_name;
     }
 
-    public String getMedName() {
-        return medName;
+    public Medicine(){
+
+    }
+    public int getMed_id() {
+        return med_id;
     }
 
-    public void setMedName(String medName) {
-        this.medName = medName;
+    public void setMed_id(int med_id) {
+        this.med_id = med_id;
     }
 
-    public String getGenName() {
-        return genName;
+    public String getMed_name() {
+        return med_name;
     }
 
-    public void setGenName(String genName) {
-        this.genName = genName;
+    public void setMed_name(String med_name) {
+        this.med_name = med_name;
     }
 
-    public String getInd() {
-        return ind;
+    public String getCom_name() {
+        return com_name;
     }
 
-    public void setInd(String ind) {
-        this.ind = ind;
-    }
-
-    public String getDos() {
-        return dos;
-    }
-
-    public void setDos(String dos) {
-        this.dos = dos;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getContra() {
-        return contra;
-    }
-
-    public void setContra(String contra) {
-        this.contra = contra;
-    }
-
-    public String getSide() {
-        return side;
-    }
-
-    public void setSide(String side) {
-        this.side = side;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-
-    public String toString() {
-
-
-        return " medName=" + medName + "\n genName=" + genName + "\n ind=" + ind
-                + "\n dos=" + dos + "\n action=" + action + "\n contra=" + contra + "\n side="
-                + side + "\n company=" +company + "\n price=" + price  ;
+    public void setCom_name(String com_name) {
+        this.com_name = com_name;
     }
 }

@@ -2,20 +2,28 @@ package com.cste.nstu.suvro.telemedicine;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class ExtendedDoctorActivity extends Activity {
+/**
+ * Created by SUVRO on 06-04-16.
+ */
+public class ExtendedGenericActivity extends Activity {
 
     TextView name, designation, qualification, specialist, location, number;
-    Button btn;
     Doctor selectedDoctor;
     private SqlLiteManger sqlLiteManger;
 
@@ -26,12 +34,7 @@ public class ExtendedDoctorActivity extends Activity {
 
         setContentView(R.layout.list_doctor);
 
-        sqlLiteManger=new SqlLiteManger(this);
-        sqlLiteManger.open();
-        selectedDoctor = new Doctor();
-
-
-        name = (TextView) findViewById(R.id.tvName);
+        /*name = (TextView) findViewById(R.id.tvName);
         designation = (TextView) findViewById(R.id.tvDesignation);
         qualification = (TextView) findViewById(R.id.tvQualification);
         specialist = (TextView) findViewById(R.id.tvSpecalist);
@@ -39,25 +42,25 @@ public class ExtendedDoctorActivity extends Activity {
         number = (TextView) findViewById(R.id.tvNumber);
 
 
-        // get the intent that we have passed from DoctorActivity
+        // get the intent that we have passed from AndroidDatabaseExample
         Intent intent = getIntent();
-        int doctor_id = intent.getIntExtra("doctor", -1);
+        int id = intent.getIntExtra("doctor", -1);
 
         // open the database of the application context
         sqlLiteManger = new SqlLiteManger(getApplicationContext());
 
         // read the doctor with "id" from the database
-        selectedDoctor =sqlLiteManger.getDoctorDetail(doctor_id);
+        selectedDoctor = sqlLiteManger.getDoctorDetail();
 
         //   long inserted = database.insertUser(user);
 
 
 
-        initializeViews();
+        initializeViews();*/
     }
 
 
-    public void onClick(View view) {
+   /* public void onClick(View view) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:number.setText(selectedDoctor.getNumber())"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -79,11 +82,10 @@ public class ExtendedDoctorActivity extends Activity {
         specialist.setText(selectedDoctor.getSpecialist());
         location.setText(selectedDoctor.getLocation());
         number.setText(selectedDoctor.getNumber());
-        btn.setText(selectedDoctor.getNumber());
 
 
 
 
     }
-
+*/
 }
