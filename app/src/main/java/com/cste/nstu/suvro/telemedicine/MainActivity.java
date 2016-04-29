@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -36,7 +37,6 @@ public class MainActivity extends Activity {
 
         // Dashboard Search button
         Button btn_ser = (Button) findViewById(R.id.btn_ser);
-
 
 
         /**
@@ -99,7 +99,6 @@ public class MainActivity extends Activity {
         });
 
 
-
     }
 
 
@@ -117,11 +116,22 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //*//*noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+        /*switch (item.getItemId()) {
+            case R.id.action_settings:
+                // Single menu item is selected do something
+                // Ex: launching new activity/screen or show alert message
+                Toast.makeText(MainActivity.this, "Setting is Selected", Toast.LENGTH_SHORT).show();
+                return true;
 
-        return super.onOptionsItemSelected(item);
+            case R.id.menu_about:
+                Toast.makeText(MainActivity.this, "about is Selected", Toast.LENGTH_SHORT).show();
+                return true;*/
+
+          //  default:
+                return super.onOptionsItemSelected(item);
+        }
     }
-}

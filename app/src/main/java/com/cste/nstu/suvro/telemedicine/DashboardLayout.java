@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 /*
  * Copyright 2011 Google Inc.
  *

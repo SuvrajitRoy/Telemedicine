@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -64,9 +64,7 @@ public class DoctorActivity extends ListActivity implements AdapterView.OnItemCl
         intent.putExtra("doctor", list.get(position).getDoctor_id());
         startActivityForResult(intent, 1);
 
-//        Toast.makeText(getApplicationContext(),
-//                "Click ListItem Number " + position, Toast.LENGTH_LONG)
-//                .show();
+
     }
 
 

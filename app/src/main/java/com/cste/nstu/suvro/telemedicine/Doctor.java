@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 
 public class Doctor {

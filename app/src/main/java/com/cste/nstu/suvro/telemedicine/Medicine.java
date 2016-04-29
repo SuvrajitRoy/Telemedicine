@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 /**
  * Created by SUVRO on 11-04-16.
@@ -8,11 +8,13 @@ public class Medicine {
     public int med_id;
     public String med_name ="";
     public String com_name ="";
+    public String gen_name ="";
 
-    public Medicine(int med_id, String med_name, String com_name) {
+    public Medicine(int med_id, String med_name, String com_name,String gen_name) {
         this.med_id = med_id;
         this.med_name = med_name;
         this.com_name = com_name;
+        this.gen_name = gen_name;
     }
 
     public Medicine(){
@@ -40,5 +42,13 @@ public class Medicine {
 
     public void setCom_name(String com_name) {
         this.com_name = com_name;
+    }
+
+    public String getGen_name() {
+        return gen_name;
+    }
+
+    public void setGen_name(String gen_name) {
+        this.gen_name = gen_name;
     }
 }

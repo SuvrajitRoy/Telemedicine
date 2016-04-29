@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 /**
  * Created by SUVRO on 06-04-16.
@@ -14,8 +14,13 @@ public class Generic {
     public String action = "";
     public String size_price = "";
 
+    public String gmed_name = "";
+    public String com_name ="";
 
-    public Generic(int gen_id, String gen_name, String indication, String dosage, String contraindication, String sideEffect, String action, String size_price) {
+
+    public Generic(int gen_id, String gen_name, String indication, String dosage, String contraindication,
+                   String sideEffect, String action, String size_price,String gmed_name,String com_name) {
+
         this.gen_id = gen_id;
         this.gen_name = gen_name;
         this.indication = indication;
@@ -24,7 +29,10 @@ public class Generic {
         this.sideEffect = sideEffect;
         this.action = action;
         this.size_price = size_price;
-    }
+        this.gmed_name=gmed_name;
+        this.com_name=com_name;
+}
+
     public Generic(){
 
     }
@@ -91,6 +99,22 @@ public class Generic {
 
     public void setSize_price(String size_price) {
         this.size_price = size_price;
+    }
+
+    public String getGmed_name() {
+        return gmed_name;
+    }
+
+    public void setGmed_name(String gmed_name) {
+        this.gmed_name = gmed_name;
+    }
+
+    public String getCom_name() {
+        return com_name;
+    }
+
+    public void setCom_name(String com_name) {
+        this.com_name = com_name;
     }
 }
 

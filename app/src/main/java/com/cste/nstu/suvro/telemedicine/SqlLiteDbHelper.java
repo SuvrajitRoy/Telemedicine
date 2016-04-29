@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -20,6 +20,7 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
 	public static final String KEY_ID="user_id";
 	public static final String KEY_NAME="user_name";
 	public static final String KEY_EMAIL="user_email";
+	public static final String KEY_PASSWORD="password";
 	public static final String KEY_GENDER="gender";
 	public static final String KEY_AGE="age";
 	public static final String KEY_SKYPE="skypeName";
@@ -40,15 +41,19 @@ public class SqlLiteDbHelper extends SQLiteOpenHelper {
     public static final String KEY_INDICATION="indication";
     public static final String KEY_DOSAGE="dosage";
     public static final String KEY_CONTRAINDICATION="contraindication";
-    public static final String KEY_ACTION="action";
-    public static final String KEY_SIDE_EFFECT="side_effect";
-    public static final String KEY_PRICE="price";
+    public static final String KEY_SIDE_EFFECT="sideEffect";
+	public static final String KEY_ACTION="action";
+    public static final String KEY_PRICE="size_price";
 
 	public static final String KEY_MEDID="med_id";
 	public static final String KEY_MEDICINE="med_name";
 
+	public static final String KEY_COMID="com_id";
 	public static final String KEY_COMPANY="com_name";
-	private static final String DB_NAME = "medicine.db";
+
+
+	private static final String DB_NAME = "telemedicineProject.db";
+	//private static final String DB_NAME = "medicine.db";
 	private static final int DB_VERSION = 1;
 	private static Context mycontext;
 //	private static String DB_PATH = "/data/data/com.cste.nstu.suvro.telemedicine/databases/";

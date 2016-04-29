@@ -1,29 +1,32 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 
 public class User {
         private int user_id;
         private String user_name ="";
         private String user_email ="";
+        private String password ="";
         private String gender ="";
         private String age = "";
         private String skypeName ="";
         private String user_phoneNo;
 
 
-    public User(int user_id, String user_name, String user_email, String gender, String age, String skypeName, String user_phoneNo) {
+    public User(int user_id, String user_name, String user_email,String password, String gender, String age, String skypeName, String user_phoneNo) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_email = user_email;
+        this.password = password;
         this.gender = gender;
         this.age = age;
         this.skypeName = skypeName;
         this.user_phoneNo = user_phoneNo;
     }
-    public User( String user_name, String user_email, String gender, String age, String skypeName, String user_phoneNo) {
+    public User( String user_name, String user_email,String password, String gender, String age, String skypeName, String user_phoneNo) {
 
         this.user_name = user_name;
         this.user_email = user_email;
+        this.password = password;
         this.gender = gender;
         this.age = age;
         this.skypeName = skypeName;
@@ -55,6 +58,14 @@ public class User {
 
     public void setUser_email(String user_email) {
         this.user_email = user_email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getGender() {

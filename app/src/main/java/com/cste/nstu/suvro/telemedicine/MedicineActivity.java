@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -42,7 +42,7 @@ public class MedicineActivity extends ListActivity implements AdapterView.OnItem
         getListView().setOnItemClickListener(this);
         setListAdapter(myAdapter);
 
-        Toast.makeText(this, "Working", Toast.LENGTH_LONG).show();
+      //  Toast.makeText(this, "Working", Toast.LENGTH_LONG).show();
 
 
 
@@ -55,7 +55,7 @@ public class MedicineActivity extends ListActivity implements AdapterView.OnItem
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
        //  start MedicineActivity with extras the generic id
-        Intent intent = new Intent(this, MedicineForGenericActivity.class);
+        Intent intent = new Intent(this, ExtendedMedicineActivity.class);
         intent.putExtra("medicine", list.get(position).getMed_id());
         startActivityForResult(intent, 1);
     }
@@ -68,59 +68,3 @@ public class MedicineActivity extends ListActivity implements AdapterView.OnItem
     }
 }
 
-   /* private SqlLiteManger sqlLiteManger;
-    Doctor doctors;
-    List<Doctor> list;
-    ArrayAdapter<String> myAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.doctor_layout);
-
-
-        sqlLiteManger = new SqlLiteManger(this);
-        sqlLiteManger.open();
-        doctors = new Doctor();
-
-
-        // find all doctors
-        list = sqlLiteManger.getAllDoctors();
-        List<String> listTitle = new ArrayList<String>();
-
-        for (int i = 0; i < list.size(); i++) {
-            listTitle.add(i, list.get(i).getDoctor_name());
-
-        }
-
-
-        myAdapter = new ArrayAdapter<String>(this, R.layout.row_layout, R.id.listText, listTitle);
-        getListView().setOnItemClickListener(this);
-        setListAdapter(myAdapter);
-        //   finish();
-        //  Toast.makeText(this, "Login SuccessFull", Toast.LENGTH_LONG).show();
-
-        sqlLiteManger.close();
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
-
-        // start ExtendedDoctorActivity with extras the doctor id
-        Intent intent = new Intent(this, ExtendedDoctorActivity.class);
-        intent.putExtra("doctor", list.get(position).getDoctor_id());
-        startActivityForResult(intent, 1);
-
-
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //  super.onActivityResult(requestCode, resultCode, data);
-
-
-    }
-
-}*/

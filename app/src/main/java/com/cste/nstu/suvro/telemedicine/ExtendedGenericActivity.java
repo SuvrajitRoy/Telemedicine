@@ -1,4 +1,4 @@
-package com.cste.nstu.suvro.telemedicine;
+package com.cste06.nstu.suvro.telemedicine;
 
 import android.Manifest;
 import android.app.Activity;
@@ -23,8 +23,8 @@ import java.util.List;
  */
 public class ExtendedGenericActivity extends Activity {
 
-    TextView name, designation, qualification, specialist, location, number;
-    Doctor selectedDoctor;
+    TextView name,indication, dosage, contradication, side, action, size;
+    Generic selectedGeneric;
     private SqlLiteManger sqlLiteManger;
 
     @Override
@@ -32,60 +32,47 @@ public class ExtendedGenericActivity extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.list_doctor);
+        setContentView(R.layout.list_generic);
 
-        /*name = (TextView) findViewById(R.id.tvName);
-        designation = (TextView) findViewById(R.id.tvDesignation);
-        qualification = (TextView) findViewById(R.id.tvQualification);
-        specialist = (TextView) findViewById(R.id.tvSpecalist);
-        location = (TextView) findViewById(R.id.tvLocation);
-        number = (TextView) findViewById(R.id.tvNumber);
+        name = (TextView) findViewById(R.id.tvName);
+        indication = (TextView) findViewById(R.id.tvDesignation);
+        dosage = (TextView) findViewById(R.id.tvQualification);
+        contradication = (TextView) findViewById(R.id.tvSpecalist);
+        side = (TextView) findViewById(R.id.tvLocation);
+        action = (TextView) findViewById(R.id.tvNumber);
+        size = (TextView) findViewById(R.id.tvSizePrice);
 
 
         // get the intent that we have passed from AndroidDatabaseExample
         Intent intent = getIntent();
-        int id = intent.getIntExtra("doctor", -1);
+        int gen_id = intent.getIntExtra("generic", -1);
 
         // open the database of the application context
         sqlLiteManger = new SqlLiteManger(getApplicationContext());
 
         // read the doctor with "id" from the database
-        selectedDoctor = sqlLiteManger.getDoctorDetail();
+        selectedGeneric = sqlLiteManger.getGenericDetail(gen_id);
 
         //   long inserted = database.insertUser(user);
 
 
 
-        initializeViews();*/
+        initializeViews();
     }
 
 
-   /* public void onClick(View view) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:number.setText(selectedDoctor.getNumber())"));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        startActivity(intent);
-    }
 
     public void initializeViews() {
-        name.setText(selectedDoctor.getDoctor_name());
-        designation.setText(selectedDoctor.getDesignation());
-        qualification.setText(selectedDoctor.getQualification());
-        specialist.setText(selectedDoctor.getSpecialist());
-        location.setText(selectedDoctor.getLocation());
-        number.setText(selectedDoctor.getNumber());
+        name.setText(selectedGeneric.getGen_name());
+        indication.setText(selectedGeneric.getIndication());
+        dosage.setText(selectedGeneric.getDosage());
+        contradication.setText(selectedGeneric.getContraindication());
+        side.setText(selectedGeneric.getSideEffect());
+        action.setText(selectedGeneric.getAction());
+        size.setText(selectedGeneric.getSize_price());
 
 
 
 
     }
-*/
 }
