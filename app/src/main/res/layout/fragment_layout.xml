@@ -1,4 +1,4 @@
-<com.cste.nstu.suvro.telemedicine.DashboardLayout
+<com.cste06.nstu.suvro.telemedicine.DashboardLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,37 +7,47 @@
 
     <Button
         android:id="@+id/btn_doc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/doctor"
         android:text="Doctor" />
-    
+
 
     <Button
         android:id="@+id/btn_usr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/user"
         android:text="User" />
-    
+
 
     <Button
         android:id="@+id/btn_med"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/medicine"
-        android:text="Medicine" />
-	
+        android:text="Medicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <!--  Generic Button -->
     <Button
         android:id="@+id/btn_gen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/generic"
         android:text="Generic" />
 
     <Button
         android:id="@+id/btn_ser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/search"
         android:text="Search" />
 
 
 
-</com.cste.nstu.suvro.telemedicine.DashboardLayout>
+</com.cste06.nstu.suvro.telemedicine.DashboardLayout>

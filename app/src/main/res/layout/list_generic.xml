@@ -20,7 +20,7 @@
             android:id="@+id/authorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name : "
+            android:text="Generic Name : "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:id="@+id/authorLabe2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Designation : "
+            android:text="Indication : "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:id="@+id/authorLabe3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qualification : "
+            android:text="Dosage : "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -85,7 +85,7 @@
             android:id="@+id/authorLabe4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Specialist : "
+            android:text="Contraindication : "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -107,7 +107,7 @@
             android:id="@+id/authorLabe5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location : "
+            android:text="Side Effect : "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -129,7 +129,7 @@
             android:id="@+id/authorLabe6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PhoneNo : "
+            android:text="Action : "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
@@ -140,11 +140,26 @@
             android:textAppearance="?android:attr/textAppearanceMedium"/>
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Call"
-        android:id="@+id/btn_call" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp" >
+
+        <TextView
+            android:id="@+id/authorLabe7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size &amp; Price : "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/tvSizePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+    </LinearLayout>
 
 
 </LinearLayout>

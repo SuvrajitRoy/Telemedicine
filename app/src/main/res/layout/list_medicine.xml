@@ -20,11 +20,11 @@
                 android:id="@+id/authorLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Generic Name : "
+                android:text="Medicine Name : "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/tvGenName"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
@@ -41,11 +41,11 @@
                 android:id="@+id/authorLabe2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Indication : "
+                android:text="Company Name : "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/tvIndication"
+                android:id="@+id/tvDesignation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
@@ -63,11 +63,11 @@
                 android:id="@+id/authorLabe3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dosage : "
+                android:text="Generic Name : "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/tvDosage"
+                android:id="@+id/tvQualification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
@@ -75,7 +75,7 @@
         </LinearLayout>
 
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -89,7 +89,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/tvContraindication"
+                android:id="@+id/tvSpecalist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
@@ -111,7 +111,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/tvSide"
+                android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
@@ -133,7 +133,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/tvAction"
+                android:id="@+id/tvNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
@@ -160,27 +160,7 @@
                 android:text="New Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp" >
-
-            <TextView
-                android:id="@+id/authorLabe8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Company Name : "
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/tvCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
-        </LinearLayout>
+-->
 
     </LinearLayout>
 </ScrollView>
